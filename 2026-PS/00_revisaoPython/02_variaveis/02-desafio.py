@@ -19,7 +19,7 @@ contador_critico = 0
 contador_adequado = 0
 contador_excesso = 0
 
-print("=== RELATÓRIO DE ESTOQUE ===\n")
+print("=== ESTOQUE ===\n")
 
 # Percorre todos os produtos usando for
 for produto in produtos:
@@ -44,9 +44,9 @@ for produto in produtos:
 
 # Exibe resumo geral
 print("=== RESUMO GERAL ===")
-print(f"Produtos em situação Crítica: {contador_critico}")
-print(f"Produtos em situação Adequada: {contador_adequado}")
-print(f"Produtos em situação de Excesso: {contador_excesso}")
+print(f"Produtos situação Crítica: {contador_critico}")
+print(f"Produtos situação Adequada: {contador_adequado}")
+print(f"Produtos situação de Excesso: {contador_excesso}")
 
 # Consulta de produto específico
 while True:
@@ -56,7 +56,7 @@ while True:
         print("Programa encerrado.")
         break
     elif consulta == "s":
-        nome_busca = input("Digite o nome do produto: ")
+        nome_busca = input("Digite o produto: ")
         encontrado = False
 
         # Busca simples na lista

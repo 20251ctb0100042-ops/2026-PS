@@ -1,5 +1,9 @@
+# Disciplina : Programação de Sistemas (PS)
+# Aula : 05 - Revisao: Estrutura de Dados
+# Autor : Luiz Henrique Schactae Brandão
 # Arquivo: 01b-debug.py
 # ATENÇÃO: 4 erros propositais. Encontre e corrija todos!
+# Descrição: Codigo com os 4 erros corrigidos
 
 # ==========================================
 # SISTEMA DE BIBLIOTECA
