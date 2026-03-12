@@ -4,6 +4,7 @@
 # Aula : 04 - Revisao: Variaveis, Tipos e Controle de Fluxo
 # Autor : Luiz Henrique Schactae Brandão
 # Data: 24/02/2026
+# Repositorio: Repositório:https://github.com/20251ctb0100042-ops/2026-PS
 
 # ---- DADOS DA TURMA ----
 

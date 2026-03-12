@@ -5,7 +5,6 @@
 # Aula : 05 - Revisao: Estrutura de Dados
 # Autor : Luiz Henrique Schactae Brandão
 # Data: 24/02/2026
-# Repositório:
 # Descrição: Catalogo simples para registrar livros
 # ===============================
 # Catálogo inicial de livros
@@ -35,7 +34,7 @@ for livro in catalogo:
 # Cadastro de novo livro
 # ===============================
 
-print("\n➕ Cadastro de novo livro")
+print("\n Cadastro de novo livro")
 
 titulo = input("Digite o título do livro: ")
 autor = input("Digite o autor do livro: ")
