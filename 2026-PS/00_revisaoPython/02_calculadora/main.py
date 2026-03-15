@@ -1,21 +1,21 @@
 def calculadora():
-    print("=== CALCULADORA BÁSICA ===")
-    print("Selecione a operação:")
+    print("=== CALCULADORA ===")
+    print("Selecione operação:")
     print("1 = Adição (+)")
     print("2 = Subtração (-)")
     print("3 = Multiplicação (*)")
     print("4 = Divisão (/)")
     print("0 = Sair")
     
-    operacao = input("\nDigite o número da operação (0/1/2/3/4): ")
+    operacao = input("\nDigite o número operação (0/1/2/3/4): ")
     
     if operacao == "0":
         print("Tchau!")
         return False
     
     try:
-        numero1 = float(input("Digite o primeiro número: "))
-        numero2 = float(input("Digite o segundo número: "))
+        numero1 = float(input("Digite primeiro número: "))
+        numero2 = float(input("Digite segundo número: "))
         
         if operacao == "1":
             resultado = numero1 + numero2
@@ -35,7 +35,7 @@ def calculadora():
         else:
             print("\nOperação inválida!")
     except ValueError:
-        print("\nErro: Digite números válidos!")
+        print("\nErro: Digite números válidos ")
     
     return True
 

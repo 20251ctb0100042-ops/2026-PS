@@ -11,8 +11,8 @@
 # ===============================
 
 catalogo = [
-    {"titulo": "Dom Casmurro", "autor": "Machado de Assis", "ano": 1899, "disponivel": True},
-    {"titulo": "1984", "autor": "George Orwell", "ano": 1949, "disponivel": False},
+    {"titulo": "Dado & Dragões", "autor": "José P. Zagal", "ano": 2024, "disponivel": True},
+    {"titulo": "Mais Pesado que o Céu", "autor": "Charles R. Cross", "ano": 2001, "disponivel": False},
     {"titulo": "O Pequeno Príncipe", "autor": "Antoine de Saint-Exupéry", "ano": 1943, "disponivel": True}
 ]
 
@@ -20,7 +20,7 @@ catalogo = [
 # Exibir catálogo de livros
 # ===============================
 
-print("📚 CATÁLOGO DA BIBLIOTECA\n")
+print(" CATÁLOGO DA BIBLIOTECA\n")
 
 for livro in catalogo:
     status = "Disponível" if livro["disponivel"] else "Emprestado"
@@ -34,7 +34,7 @@ for livro in catalogo:
 # Cadastro de novo livro
 # ===============================
 
-print("\n Cadastro de novo livro")
+print("\n Cadastro novo livro")
 
 titulo = input("Digite o título do livro: ")
 autor = input("Digite o autor do livro: ")
@@ -49,13 +49,13 @@ novo_livro = {
 
 catalogo.append(novo_livro)
 
-print("\n✅ Livro cadastrado com sucesso!\n")
+print("\n Livro cadastrado com sucesso!\n")
 
 # ===============================
 # Exibir catálogo atualizado
 # ===============================
 
-print("📚 CATÁLOGO ATUALIZADO\n")
+print(" CATÁLOGO ATUALIZADO\n")
 
 for livro in catalogo:
     status = "Disponível" if livro["disponivel"] else "Emprestado"
@@ -66,9 +66,9 @@ for livro in catalogo:
 # Busca por autor
 # ===============================
 
-print("\n🔎 Buscar livros por autor")
+print("\n Buscar livros por autor")
 
-busca = input("Digite o nome do autor: ").lower()
+busca = input("Digite quem é o autor: ").lower()
 
 encontrados = []
 
@@ -77,7 +77,7 @@ for livro in catalogo:
         encontrados.append(livro)
 
 if len(encontrados) == 0:
-    print("Nenhum livro encontrado para esse autor.")
+    print("Nenhum livro encontrado desse autor.")
 else:
     print("\nLivros encontrados:")
     for livro in encontrados:
@@ -98,6 +98,6 @@ for livro in catalogo:
     else:
         emprestados += 1
 
-print("\n📊 Relatório da biblioteca")
+print("\n Relatório da biblioteca")
 print(f"Livros disponíveis: {disponiveis}")
 print(f"Livros emprestados: {emprestados}")

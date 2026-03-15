@@ -7,12 +7,12 @@
 # --- FUNÇÕES ---
 
 def calcular_media(nota1, nota2):
-    """Recebe duas notas e retorna a média aritmética."""
+    """Recebe duas notas e mostra a média aritmética."""
     return (nota1 + nota2) / 2
 
 
 def verificar_situacao(media):
-    """Retorna a situação do aluno pela a média."""
+    """mostra a situação do aluno pela a média."""
     if media >= 6.0:
         return "Aprovado"
     elif media >= 4.0:
@@ -22,7 +22,7 @@ def verificar_situacao(media):
 
 
 def solicitar_notas(nome_aluno):
-    """Solicita para validação duas notas entre 0 e 10."""
+    """Solicita para validar duas notas entre 0 e 10."""
     while True:
         try:
             nota1 = float(input(f"Digite a primeira nota de {nome_aluno} (0-10): "))
@@ -36,7 +36,7 @@ def solicitar_notas(nome_aluno):
 
 
 def gerar_relatorio(nome, media, situacao):
-    """Exibe o relatório completo do aluno."""
+    """Exibe relatório completo do aluno."""
     print("\n--- Resultado do Aluno ---")
     print(f"Nome: {nome}")
     print(f"Média: {media:.2f}")
@@ -47,7 +47,7 @@ def gerar_relatorio(nome, media, situacao):
 # --- PROGRAMA PRINCIPAL ---
 
 def main():
-    """Processa a lista de 3 alunos usando todas as funções."""
+    """Processa lista de 3 alunos usando todas as funções."""
     alunos = []
     # Coletando nomes
     for i in range(3):
@@ -65,7 +65,7 @@ def main():
 # --- EXECUÇÃO ---
 if __name__ == "__main__":
     print("=" * 40)
-    print("   SISTEMA DE SITUAÇÃO DE ALUNOS - IFPR")
+    print("   SISTEMA SITUAÇÃO DE ALUNOS - IFPR")
     print("=" * 40)
     main()
     print("\nPrograma encerrado.")

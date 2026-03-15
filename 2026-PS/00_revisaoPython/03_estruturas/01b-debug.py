@@ -10,9 +10,9 @@
 # ==========================================
 
 catalogo = [
-    {"titulo": "Código Limpo", "autor": "Robert C. Martin", "disponivel": True},
+    {"titulo": "Codigo Limpo", "autor": "Robert C. Martin", "disponivel": True},
     {"titulo": "Entendendo Algoritmos", "autor": "Aditya Bhargava", "disponivel": False},
-    {"titulo": "Python Fluente", "autor": "Luciano Ramalho", "disponivel": True},
+    {"titulo": "Pithon Fluente", "autor": "Luciano Ramalho", "disponivel": True},
 ]
 
 # Primeiro livro
@@ -26,7 +26,7 @@ for livro in catalogo:
 
 # Total de livros
 total = len(catalogo)
-print(f"\nTotal de livros: {total}")
+print(f"\nTotal livros: {total}")
 
 # Mostrar informações completas do primeiro livro
 print("\nDetalhes do primeiro livro:")

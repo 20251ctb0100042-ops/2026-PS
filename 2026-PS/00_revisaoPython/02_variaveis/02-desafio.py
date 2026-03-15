@@ -50,10 +50,10 @@ print(f"Produtos situação de Excesso: {contador_excesso}")
 
 # Consulta de produto específico
 while True:
-    consulta = input("\nDeseja consultar um produto específico? (s/n): ").lower()
+    consulta = input("\nDeseja consultar um produto específico (s/n): ").lower()
     
     if consulta == "n":
-        print("Programa encerrado.")
+        print("Programa ecerrado.")
         break
     elif consulta == "s":
         nome_busca = input("Digite o produto: ")
@@ -80,6 +80,6 @@ while True:
 
         # Caso não encontre o produto
         if not encontrado:
-            print("Produto não encontrado no estoque.")
+            print("Produto nao preente no estoque.")
     else:
-        print("Opção inválida. Digite 's' ou 'n'.")
+        print("Opção não é valida. Digite 's' ou 'n'.")

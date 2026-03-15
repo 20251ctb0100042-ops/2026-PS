@@ -1,4 +1,9 @@
+# Disciplina : Programação de Sistemas (PS)
+# Aula : 06 - Revisao: Estrutura de Dados
+# Autor : Luiz Henrique Schactae Brandão
 # Arquivo: 01b-debug.py
+# ATENÇÃO: 4 erros propositais. Encontre e corrija eles
+# Descrição: Codigo com os 4 erros ja corrigidos
 
 def saudacao(nome, turno="manhã"):
     mensagem = f"Bom {turno}, {nome}!"
