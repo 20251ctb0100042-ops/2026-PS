@@ -17,11 +17,11 @@ public class CardapioRestaurante {
             System.out.println("===========================");
             System.out.println("      FAST FOOD IFPR       ");
             System.out.println("===========================");
-            System.out.println("1 - X-Burguer ........ R$ 18,00");
-            System.out.println("2 - Pizza ............ R$ 35,00");
-            System.out.println("3 - Batata Frita ..... R$ 15,00");
-            System.out.println("4 - Refrigerante ..... R$  8,00");
-            System.out.println("5 - Sorvete .......... R$  6,00");
+            System.out.println("1 - sybau ........ R$ 18,00");
+            System.out.println("2 - ganley ............ R$ 35,00");
+            System.out.println("3 - orelha ..... R$ 15,00");
+            System.out.println("4 - sopa de morcego ..... R$  8,00");
+            System.out.println("5 - inbugui .......... R$  6,00");
             System.out.println("6 - Finalizar Pedido");
             System.out.println("===========================");
 
@@ -43,20 +43,20 @@ public class CardapioRestaurante {
 
             // Atribuição de produto e preço com base nas novas opções
             if (opcao == 1) {
-                produto = "X-Burguer";
-                preco = 18.00;
+                produto = "sybau";
+                preco = 50.00;
             } else if (opcao == 2) {
-                produto = "Pizza";
-                preco = 35.00;
+                produto = "ganley";
+                preco = 12.00;
             } else if (opcao == 3) {
-                produto = "Batata Frita";
-                preco = 15.00;
+                produto = "orelha";
+                preco = 42.00;
             } else if (opcao == 4) {
-                produto = "Refrigerante";
-                preco = 8.00;
+                produto = "sopa de morcego";
+                preco = 20.00;
             } else if (opcao == 5) {
-                produto = "Sorvete";
-                preco = 6.00;
+                produto = "inbugui";
+                preco = 20.00;
             } else {
                 System.out.println("Opção inválida! Tente novamente.\n");
                 continue; // Volta para o início do menu
@@ -106,6 +106,7 @@ public class CardapioRestaurante {
         System.out.println("1 - Dinheiro");
         System.out.println("2 - Cartão");
         System.out.println("3 - PIX");
+        System.out.println("4 - Escambo");
         System.out.print("\nEscolha: ");
         int formaPagamento = entrada.nextInt();
 
