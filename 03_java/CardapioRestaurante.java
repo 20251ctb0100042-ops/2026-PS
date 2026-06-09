@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class CardapioRestaurante {
@@ -5,55 +6,118 @@ public class CardapioRestaurante {
     public static void main(String[] args) {
 
         Scanner entrada = new Scanner(System.in);
+        Random gerador = new Random();
 
-        String produto = "";
-        double preco = 0;
+        // Variáveis para acumular o pedido
+        String resumoPedido = "";
+        double totalGeral = 0;
+        int continuar = 1; // Controla se o usuário quer continuar comprando
 
-        System.out.println("=================================");
-        System.out.println("     CARDÁPIO ELETRÔNICO");
-        System.out.println("=================================");
-        System.out.println("1 - X-Burguer .......... R$ 18,00");
-        System.out.println("2 - Pizza .............. R$ 35,00");
-        System.out.println("3 - Suco Natural ....... R$ 8,00");
-        System.out.println("4 - Café ............... R$ 5,00");
-        System.out.println("=================================");
+        do {
+            System.out.println("===========================");
+            System.out.println("      FAST FOOD IFPR       ");
+            System.out.println("===========================");
+            System.out.println("1 - X-Burguer ........ R$ 18,00");
+            System.out.println("2 - Pizza ............ R$ 35,00");
+            System.out.println("3 - Batata Frita ..... R$ 15,00");
+            System.out.println("4 - Refrigerante ..... R$  8,00");
+            System.out.println("5 - Sorvete .......... R$  6,00");
+            System.out.println("6 - Finalizar Pedido");
+            System.out.println("===========================");
 
-        System.out.print("Escolha uma opção: ");
-        int opcao = entrada.nextInt();
+            System.out.print("Escolha: ");
+            int opcao = entrada.nextInt();
 
-        if (opcao == 1) {
-            produto = "X-Burguer";
-            preco = 18.00;
-        } else if (opcao == 2) {
-            produto = "Pizza";
-            preco = 35.00;
-        } else if (opcao == 3) {
-            produto = "Suco Natural";
-            preco = 8.00;
-        } else if (opcao == 4) {
-            produto = "Café";
-            preco = 5.00;
-        } else {
-            System.out.println("Opção inválida.");
-            entrada.close();
-            return;
-        }
+            // Se o usuário escolher a opção 6 direto no menu principal
+            if (opcao == 6) {
+                if (totalGeral == 0) {
+                    System.out.println("Nenhum item foi adicionado ao pedido. Programa encerrado.");
+                    entrada.close();
+                    return;
+                }
+                break; // Sai do laço e vai direto para o pagamento
+            }
 
-        // Perguntar quantidade
-        System.out.print("Digite a quantidade desejada: ");
-        int quantidade = entrada.nextInt();
+            String produto = "";
+            double preco = 0;
 
-        // Calcular valor total
-        double total = preco * quantidade;
+            // Atribuição de produto e preço com base nas novas opções
+            if (opcao == 1) {
+                produto = "X-Burguer";
+                preco = 18.00;
+            } else if (opcao == 2) {
+                produto = "Pizza";
+                preco = 35.00;
+            } else if (opcao == 3) {
+                produto = "Batata Frita";
+                preco = 15.00;
+            } else if (opcao == 4) {
+                produto = "Refrigerante";
+                preco = 8.00;
+            } else if (opcao == 5) {
+                produto = "Sorvete";
+                preco = 6.00;
+            } else {
+                System.out.println("Opção inválida! Tente novamente.\n");
+                continue; // Volta para o início do menu
+            }
 
-        // Resumo final
-        System.out.println("\n========== RESUMO DO PEDIDO ==========");
-        System.out.println("Produto: " + produto);
-        System.out.println("Preço unitário: R$ " + preco);
-        System.out.println("Quantidade: " + quantidade);
-        System.out.printf("Valor total: R$ %.2f%n", total);
-        System.out.println("======================================");
+            System.out.print("\nQuantidade: ");
+            int quantidade = entrada.nextInt();
+
+            // Calcula o valor deste item
+            double subtotal = preco * quantidade;
+            
+            // Acumula o valor no total geral
+            totalGeral += subtotal;
+
+            // Alinha o texto do resumo (String.format ajuda a colocar os pontinhos "...")
+            resumoPedido += String.format("%dx %-20s R$ %.2f%n", quantidade, produto + " ", subtotal).replace(' ', '.');
+
+            System.out.println("\nItem adicionado ao pedido!");
+
+            // Pergunta se deseja continuar comprando
+            System.out.println("\nDeseja continuar comprando?");
+            System.out.println("1 - Sim");
+            System.out.println("2 - Finalizar");
+            System.out.print("\nEscolha: ");
+            continuar = entrada.nextInt();
+            System.out.println("===========================\n");
+
+        } while (continuar == 1);
+
+        // ===========================
+        //       RESUMO DO PEDIDO
+        // ===========================
+        System.out.println("===========================");
+        System.out.println("     RESUMO DO PEDIDO      ");
+        System.out.println("===========================");
+        
+        // Exibe todos os itens acumulados (ajustando os pontinhos que o replace alterou por engano nas quebras de linha)
+        System.out.print(resumoPedido.replace(".\n", "\n"));
+        
+        System.out.printf("%nTOTAL: R$ %.2f%n", totalGeral);
+        System.out.println("===========================");
+
+        // ===========================
+        //    FORMA DE PAGAMENTO
+        // ===========================
+        System.out.println("\nForma de pagamento:\n");
+        System.out.println("1 - Dinheiro");
+        System.out.println("2 - Cartão");
+        System.out.println("3 - PIX");
+        System.out.print("\nEscolha: ");
+        int formaPagamento = entrada.nextInt();
+
+        System.out.println("\nPagamento realizado com sucesso!");
+
+        // Gera um número de pedido aleatório (ex: entre 100 e 999)
+        int numeroPedido = gerador.nextInt(900) + 100; 
+        System.out.println("\nPedido Nº " + numeroPedido);
+        System.out.println("\nAguarde a chamada do seu pedido.");
 
         entrada.close();
     }
 }
+
+
