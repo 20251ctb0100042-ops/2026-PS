@@ -8,117 +8,139 @@ public class CardapioRestaurante {
         Scanner entrada = new Scanner(System.in);
         Random gerador = new Random();
 
-        // Variáveis para acumular o pedido
         String resumoPedido = "";
         double totalGeral = 0;
-        int continuar = 1; // Controla se o usuário quer continuar comprando
 
-        do {
+        while (true) {
+
             System.out.println("===========================");
             System.out.println("      FAST FOOD IFPR       ");
             System.out.println("===========================");
-            System.out.println("1 - sybau ........ R$ 18,00");
-            System.out.println("2 - ganley ............ R$ 35,00");
-            System.out.println("3 - orelha ..... R$ 15,00");
-            System.out.println("4 - sopa de morcego ..... R$  8,00");
-            System.out.println("5 - inbugui .......... R$  6,00");
+            System.out.println("1 - sybau ........ R$ 50,00");
+            System.out.println("2 - ganley ....... R$ 12,00");
+            System.out.println("3 - orelha ....... R$ 42,00");
+            System.out.println("4 - sopa de morcego R$ 20,00");
+            System.out.println("5 - inbugui ...... R$ 20,00");
             System.out.println("6 - Finalizar Pedido");
             System.out.println("===========================");
 
             System.out.print("Escolha: ");
             int opcao = entrada.nextInt();
 
-            // Se o usuário escolher a opção 6 direto no menu principal
             if (opcao == 6) {
+
                 if (totalGeral == 0) {
-                    System.out.println("Nenhum item foi adicionado ao pedido. Programa encerrado.");
-                    entrada.close();
-                    return;
+                    System.out.println("Nenhum item foi adicionado.");
+                    continue;
                 }
-                break; // Sai do laço e vai direto para o pagamento
+
+                while (true) {
+
+                    System.out.println("\n===========================");
+                    System.out.println("     RESUMO DO PEDIDO");
+                    System.out.println("===========================");
+                    System.out.print(resumoPedido);
+                    System.out.printf("\nTOTAL: R$ %.2f\n", totalGeral);
+
+                    System.out.println("\n1 - Pagamento");
+                    System.out.println("2 - Adicionar mais itens");
+                    System.out.println("3 - Cancelar pedido");
+                    System.out.print("Escolha: ");
+
+                    int escolha = entrada.nextInt();
+
+                    if (escolha == 2) {
+                        break;
+                    }
+
+                    if (escolha == 3) {
+                        System.out.println("Pedido cancelado.");
+                        entrada.close();
+                        return;
+                    }
+
+                    if (escolha == 1) {
+
+                        while (true) {
+
+                            System.out.println("\nForma de pagamento");
+                            System.out.println("1 - Dinheiro");
+                            System.out.println("2 - Cartão");
+                            System.out.println("3 - PIX");
+                            System.out.println("4 - Escambo");
+                            System.out.println("5 - Voltar ao cardápio");
+                            System.out.print("Escolha: ");
+
+                            int pagamento = entrada.nextInt();
+
+                            if (pagamento == 5) {
+                                break;
+                            }
+
+                            if (pagamento >= 1 && pagamento <= 4) {
+
+                                System.out.println("\nPagamento realizado com sucesso!");
+
+                                int numeroPedido = gerador.nextInt(900) + 100;
+
+                                System.out.println("Pedido Nº " + numeroPedido);
+                                System.out.println("Aguarde a chamada do seu pedido.");
+
+                                entrada.close();
+                                return;
+                            }
+
+                            System.out.println("Opção inválida!");
+                        }
+
+                        break;
+                    }
+
+                    System.out.println("Opção inválida!");
+                }
+
+                continue;
             }
 
             String produto = "";
             double preco = 0;
 
-            // Atribuição de produto e preço com base nas novas opções
             if (opcao == 1) {
                 produto = "sybau";
-                preco = 50.00;
+                preco = 50;
             } else if (opcao == 2) {
                 produto = "ganley";
-                preco = 12.00;
+                preco = 12;
             } else if (opcao == 3) {
                 produto = "orelha";
-                preco = 42.00;
+                preco = 42;
             } else if (opcao == 4) {
                 produto = "sopa de morcego";
-                preco = 20.00;
+                preco = 20;
             } else if (opcao == 5) {
                 produto = "inbugui";
-                preco = 20.00;
+                preco = 20;
             } else {
-                System.out.println("Opção inválida! Tente novamente.\n");
-                continue; // Volta para o início do menu
+                System.out.println("Opção inválida!");
+                continue;
             }
 
-            System.out.print("\nQuantidade: ");
+            System.out.print("Quantidade: ");
             int quantidade = entrada.nextInt();
 
-            // Calcula o valor deste item
             double subtotal = preco * quantidade;
-            
-            // Acumula o valor no total geral
-            totalGeral += subtotal;
 
-            // Alinha o texto do resumo (String.format ajuda a colocar os pontinhos "...")
-            resumoPedido += String.format("%dx %-20s R$ %.2f%n", quantidade, produto + " ", subtotal).replace(' ', '.');
+            totalGeral = totalGeral + subtotal;
 
-            System.out.println("\nItem adicionado ao pedido!");
+            resumoPedido = resumoPedido
+                    + quantidade + "x "
+                    + produto
+                    + " = R$ "
+                    + String.format("%.2f", subtotal)
+                    + "\n";
 
-            // Pergunta se deseja continuar comprando
-            System.out.println("\nDeseja continuar comprando?");
-            System.out.println("1 - Sim");
-            System.out.println("2 - Finalizar");
-            System.out.print("\nEscolha: ");
-            continuar = entrada.nextInt();
-            System.out.println("===========================\n");
-
-        } while (continuar == 1);
-
-        // ===========================
-        //       RESUMO DO PEDIDO
-        // ===========================
-        System.out.println("===========================");
-        System.out.println("     RESUMO DO PEDIDO      ");
-        System.out.println("===========================");
-        
-        // Exibe todos os itens acumulados (ajustando os pontinhos que o replace alterou por engano nas quebras de linha)
-        System.out.print(resumoPedido.replace(".\n", "\n"));
-        
-        System.out.printf("%nTOTAL: R$ %.2f%n", totalGeral);
-        System.out.println("===========================");
-
-        // ===========================
-        //    FORMA DE PAGAMENTO
-        // ===========================
-        System.out.println("\nForma de pagamento:\n");
-        System.out.println("1 - Dinheiro");
-        System.out.println("2 - Cartão");
-        System.out.println("3 - PIX");
-        System.out.println("4 - Escambo");
-        System.out.print("\nEscolha: ");
-        int formaPagamento = entrada.nextInt();
-
-        System.out.println("\nPagamento realizado com sucesso!");
-
-        // Gera um número de pedido aleatório (ex: entre 100 e 999)
-        int numeroPedido = gerador.nextInt(900) + 100; 
-        System.out.println("\nPedido Nº " + numeroPedido);
-        System.out.println("\nAguarde a chamada do seu pedido.");
-
-        entrada.close();
+            System.out.println("Item adicionado ao pedido!\n");
+        }
     }
 }
-
 
