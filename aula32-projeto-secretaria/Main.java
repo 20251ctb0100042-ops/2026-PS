@@ -132,13 +132,10 @@ public class Main {
         }
     }
 
-    // =========================
-    // BUSCAR
-    // =========================
 
     public static void buscarAluno() {
 
-        System.out.println("\n===== BUSCAR ALUNO =====");
+        System.out.println("\n BUSCAR ALUNO ");
 
         String matricula = lerTexto("Digite a matrícula: ");
 
