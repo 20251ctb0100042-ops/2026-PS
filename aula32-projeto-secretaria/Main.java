@@ -18,7 +18,7 @@ public class Main {
             switch (opcao) {
 
                 case 1:
-                    cadastrarAluno();
+                    cadastrar(alunos, scanner);
                     break;
 
                 case 2:
@@ -34,7 +34,7 @@ public class Main {
                     break;
 
                 case 5:
-                    removerAluno();
+                    remover(alunos, scanner);
                     break;
 
                 case 6:
@@ -46,7 +46,7 @@ public class Main {
                     break;
 
                 default:
-                    System.out.println("\nOpção inválida!");
+                    System.out.println("\nOpção inválida! Vale 0, 1, 2, 3, 4, 5 ou 6.");
             }
 
         } while (opcao != 0);
@@ -63,55 +63,41 @@ public class Main {
         System.out.println("\n=================================");
         System.out.println("       SISTEMA DE SECRETARIA");
         System.out.println("=================================");
-        System.out.println("1 - Cadastrar aluno");
-        System.out.println("2 - Listar alunos");
-        System.out.println("3 - Buscar por matrícula");
-        System.out.println("4 - Atualizar aluno");
-        System.out.println("5 - Remover aluno");
-        System.out.println("6 - Relatório");
-        System.out.println("0 - Sair");
+        System.out.println("[1] Cadastrar aluno");
+        System.out.println("[2] Listar alunos");
+        System.out.println("[3] Buscar por matrícula");
+        System.out.println("[4] Atualizar curso");
+        System.out.println("[5] Remover aluno");
+        System.out.println("[6] Relatório");
+        System.out.println("[0] Sair");
         System.out.println("=================================");
     }
 
     // =========================
-    // CADASTRAR
+    // CADASTRAR (Fase 2)
     // =========================
 
-    public static void cadastrarAluno() {
+    static void cadastrar(ArrayList<Aluno> lista, Scanner teclado) {
+        System.out.print("Nome: ");
+        String nome = teclado.nextLine().trim();
+        System.out.print("Matricula: ");
+        String matricula = teclado.nextLine().trim();
 
-        System.out.println("\n===== CADASTRO DE ALUNO =====");
-
-        String matricula = lerTexto("Digite a matrícula: ");
-
-        // Verifica se a matrícula já existe
-        if (buscarPorMatricula(matricula) != null) {
-            System.out.println("Erro: essa matrícula já está cadastrada.");
-            return;
+        // MATRICULA UNICA: busca ANTES de inserir. Se ja existe, desiste.
+        Aluno existente = buscarPorMatricula(lista, matricula);
+        if (existente != null) {
+            System.out.println("Ja existe ficha com a matricula " + matricula + "!");
+            return;   // sai do metodo agora; nao cadastra
         }
 
-        String nome = lerTexto("Digite o nome: ");
-        String curso = lerTexto("Digite o curso: ");
+        System.out.print("Curso: ");
+        String curso = teclado.nextLine().trim();
+        System.out.print("Cidade: ");
+        String cidade = teclado.nextLine().trim();
 
-        int idade = lerInteiro("Digite a idade: ");
-
-        while (idade <= 0) {
-            System.out.println("A idade deve ser maior que zero.");
-            idade = lerInteiro("Digite a idade novamente: ");
-        }
-
-        String atributoExtra = lerTexto("Digite o atributo extra: ");
-
-        Aluno aluno = new Aluno(
-                matricula,
-                nome,
-                curso,
-                idade,
-                atributoExtra
-        );
-
-        alunos.add(aluno);
-
-        System.out.println("\nAluno cadastrado com sucesso!");
+        Aluno novo = new Aluno(nome, matricula, curso, cidade);
+        lista.add(novo);
+        System.out.println("Ficha de " + novo.getNome() + " arquivada!");
     }
 
     // =========================
@@ -127,11 +113,14 @@ public class Main {
             return;
         }
 
-        for (Aluno aluno : alunos) {
-            System.out.println(aluno);
+        for (Aluno a : alunos) {
+            System.out.println(a);   // A impressao utiliza o toString automaticamente
         }
     }
 
+    // =========================
+    // BUSCAR
+    // =========================
 
     public static void buscarAluno() {
 
@@ -139,7 +128,7 @@ public class Main {
 
         String matricula = lerTexto("Digite a matrícula: ");
 
-        Aluno aluno = buscarPorMatricula(matricula);
+        Aluno aluno = buscarPorMatricula(alunos, matricula);
 
         if (aluno == null) {
             System.out.println("Aluno não encontrado.");
@@ -150,15 +139,13 @@ public class Main {
     }
 
     // Método reutilizado pelo sistema
-    public static Aluno buscarPorMatricula(String matricula) {
-
-        for (Aluno aluno : alunos) {
-
-            if (aluno.getMatricula().equalsIgnoreCase(matricula)) {
-                return aluno;
+    public static Aluno buscarPorMatricula(ArrayList<Aluno> lista, String matricula) {
+        for (int i = 0; i < lista.size(); i++) {
+            Aluno a = lista.get(i);
+            if (a.getMatricula().equals(matricula)) {
+                return a;
             }
         }
-
         return null;
     }
 
@@ -167,75 +154,43 @@ public class Main {
     // =========================
 
     public static void atualizarAluno() {
+        atualizar(alunos, scanner);
+    }
 
-        System.out.println("\n===== ATUALIZAR ALUNO =====");
-
-        String matricula = lerTexto("Digite a matrícula do aluno: ");
-
-        Aluno aluno = buscarPorMatricula(matricula);
-
-        if (aluno == null) {
-            System.out.println("Aluno não encontrado.");
+    public static void atualizar(ArrayList<Aluno> lista, Scanner teclado) {
+        System.out.print("Matricula da ficha a atualizar: ");
+        String matricula = teclado.nextLine().trim();
+        Aluno a = buscarPorMatricula(lista, matricula);
+        if (a == null) {
+            System.out.println("Nenhuma ficha com a matricula " + matricula + ".");
             return;
         }
+        System.out.print("Novo curso de " + a.getNome() + ": ");
+        String novoCurso = teclado.nextLine().trim();
 
-        System.out.println("\nAluno atual:");
-        System.out.println(aluno);
-
-        System.out.println("\nDigite os novos dados:");
-
-        String novoNome = lerTexto("Novo nome: ");
-        String novoCurso = lerTexto("Novo curso: ");
-        int novaIdade = lerInteiro("Nova idade: ");
-
-        while (novaIdade <= 0) {
-            System.out.println("A idade deve ser maior que zero.");
-            novaIdade = lerInteiro("Digite a idade novamente: ");
-        }
-
-        String novoAtributoExtra = lerTexto("Novo atributo extra: ");
-
-        aluno.setNome(novoNome);
-        aluno.setCurso(novoCurso);
-        aluno.setIdade(novaIdade);
-        aluno.setAtributoExtra(novoAtributoExtra);
-
-        System.out.println("\nAluno atualizado com sucesso!");
+        a.setCurso(novoCurso);
+        System.out.println("Ficha atualizada: " + a);
     }
 
     // =========================
-    // REMOVER
+    // REMOVER (Fase 1)
     // =========================
 
-    public static void removerAluno() {
-
-        System.out.println("\n===== REMOVER ALUNO =====");
-
-        String matricula = lerTexto("Digite a matrícula do aluno: ");
-
-        Aluno aluno = buscarPorMatricula(matricula);
-
-        if (aluno == null) {
-            System.out.println("Aluno não encontrado.");
+    static void remover(ArrayList<Aluno> lista, Scanner teclado) {
+        System.out.print("Matricula da ficha a remover: ");
+        String matricula = teclado.nextLine().trim();
+        Aluno a = buscarPorMatricula(lista, matricula);
+        if (a == null) {
+            System.out.println("Nenhuma ficha com a matricula " + matricula + ".");
             return;
         }
-
-        System.out.println("\nAluno encontrado:");
-        System.out.println(aluno);
-
-        String confirmacao = lerTexto(
-                "\nDeseja realmente remover este aluno? (S/N): "
-        );
-
-        if (confirmacao.equalsIgnoreCase("S")) {
-
-            alunos.remove(aluno);
-
-            System.out.println("Aluno removido com sucesso!");
-
+        System.out.print("Tem certeza que remove " + a.getNome() + "? (s/n): ");
+        String resposta = teclado.nextLine().trim();
+        if (resposta.equals("s")) {
+            lista.remove(a);     // remove ESTA ficha (a mesma referencia achada)
+            System.out.println("Ficha removida.");
         } else {
-
-            System.out.println("Remoção cancelada.");
+            System.out.println("Remocao cancelada.");
         }
     }
 
@@ -326,4 +281,4 @@ public class Main {
             }
         }
     }
-}  
+}

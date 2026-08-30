@@ -1,25 +1,15 @@
 public class Aluno {
 
-    private String matricula;
     private String nome;
+    private String matricula;
     private String curso;
-    private int idade;
-    private String atributoExtra;
+    private String cidade;
 
-    public Aluno(String matricula, String nome, String curso, int idade, String atributoExtra) {
-        this.matricula = matricula;
+    public Aluno(String nome, String matricula, String curso, String cidade) {
         this.nome = nome;
-        this.curso = curso;
-        this.idade = idade;
-        this.atributoExtra = atributoExtra;
-    }
-
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
         this.matricula = matricula;
+        this.curso = curso;
+        this.cidade = cidade;
     }
 
     public String getNome() {
@@ -30,6 +20,14 @@ public class Aluno {
         this.nome = nome;
     }
 
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
     public String getCurso() {
         return curso;
     }
@@ -38,28 +36,17 @@ public class Aluno {
         this.curso = curso;
     }
 
-    public int getIdade() {
-        return idade;
+    public String getCidade() {
+        return cidade;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
-    public String getAtributoExtra() {
-        return atributoExtra;
-    }
-
-    public void setAtributoExtra(String atributoExtra) {
-        this.atributoExtra = atributoExtra;
-    }
-
+    // toString: define a apresentacao textual da ficha
     @Override
     public String toString() {
-        return "Matrícula: " + matricula
-                + " | Nome: " + nome
-                + " | Curso: " + curso
-                + " | Idade: " + idade
-                + " | Atributo extra: " + atributoExtra;
+        return matricula + " | " + nome + " | " + curso + " | " + cidade;
     }
 }
