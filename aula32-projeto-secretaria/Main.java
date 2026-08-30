@@ -61,7 +61,7 @@ public class Main {
     public static void mostrarMenu() {
 
         System.out.println("\n=================================");
-        System.out.println("       SISTEMA DE SECRETARIA");
+        System.out.println("       SECRETARIA DO CAMPUS - por Luiz Henrique      ");
         System.out.println("=================================");
         System.out.println("[1] Cadastrar aluno");
         System.out.println("[2] Listar alunos");
