@@ -74,14 +74,23 @@ public class Main {
     }
 
     // =========================
-    // CADASTRAR (Fase 2)
+    // CADASTRAR (Fase 2 + Validação de Campos Vazio)
     // =========================
 
     static void cadastrar(ArrayList<Aluno> lista, Scanner teclado) {
         System.out.print("Nome: ");
         String nome = teclado.nextLine().trim();
+        if (nome.isEmpty()) {
+            System.out.println("Erro: O campo Nome é obrigatório e não pode ficar vazio!");
+            return; // sai do método e volta ao menu
+        }
+
         System.out.print("Matricula: ");
         String matricula = teclado.nextLine().trim();
+        if (matricula.isEmpty()) {
+            System.out.println("Erro: O campo Matrícula é obrigatório e não pode ficar vazio!");
+            return; // sai do método e volta ao menu
+        }
 
         // MATRICULA UNICA: busca ANTES de inserir. Se ja existe, desiste.
         Aluno existente = buscarPorMatricula(lista, matricula);
@@ -92,8 +101,17 @@ public class Main {
 
         System.out.print("Curso: ");
         String curso = teclado.nextLine().trim();
+        if (curso.isEmpty()) {
+            System.out.println("Erro: O campo Curso é obrigatório e não pode ficar vazio!");
+            return; // sai do método e volta ao menu
+        }
+
         System.out.print("Cidade: ");
         String cidade = teclado.nextLine().trim();
+        if (cidade.isEmpty()) {
+            System.out.println("Erro: O campo Cidade é obrigatório e não pode ficar vazio!");
+            return; // sai do método e volta ao menu
+        }
 
         Aluno novo = new Aluno(nome, matricula, curso, cidade);
         lista.add(novo);
