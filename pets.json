@@ -1,0 +1,11 @@
+[
+    {
+        "nome": "Elianai",
+        "especie": "primata",
+        "idade": 80,
+        "peso": 100.0,
+        "nome_dono": "luiz",
+        "vacinado": true,
+        "hospedado": false
+    }
+]
