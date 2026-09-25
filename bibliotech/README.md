@@ -37,3 +37,8 @@ Ele ajuda a biblioteca a controlar quais livros estão disponíveis, quais estã
 ### Classes
 ​
 ![Diagrama de classes do BiblioTech](/bibliotech/docs/classes.svg)
+
+## 5. O que o codigo devolveu ao diagrama (Aula 37)
+
+- Na classe `Livro`, foi adicionado o atributo `disponivel`, do tipo `boolean`, para saber se o livro está disponível ou emprestado.
+- Na classe `Leitor`, foi adicionado o atributo `livrosEmMaos`, do tipo `int`, para contar quantos livros o leitor está com ele.
