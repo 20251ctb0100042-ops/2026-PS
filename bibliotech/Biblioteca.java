@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Biblioteca {
 
-    // O 0..* do diagrama: cada lista guarda muitas referencias.
     private ArrayList<Livro> livros;
     private ArrayList<Leitor> leitores;
     private ArrayList<Emprestimo> emprestimos;
@@ -37,7 +36,6 @@ public class Biblioteca {
             }
         }
 
-        // Devolve o livro achado, ou null se o titulo nao esta no acervo.
         return null;
     }
 
@@ -74,8 +72,6 @@ public class Biblioteca {
         return true;
     }
 
-    // Procura o emprestimo ATIVO daquele titulo.
-    // O registro continua na lista.
     public boolean devolver(String titulo) {
 
         for (int i = 0; i < emprestimos.size(); i++) {
@@ -97,5 +93,21 @@ public class Biblioteca {
         for (int i = 0; i < emprestimos.size(); i++) {
             System.out.println(emprestimos.get(i));
         }
+    }
+
+    // Fornece uma descricao do acervo para a interface.
+    public String obterAcervoComoTexto() {
+
+        if (livros.isEmpty()) {
+            return "Nenhum livro cadastrado.";
+        }
+
+        String texto = "";
+
+        for (int i = 0; i < livros.size(); i++) {
+            texto = texto + livros.get(i) + "\n";
+        }
+
+        return texto;
     }
 }
