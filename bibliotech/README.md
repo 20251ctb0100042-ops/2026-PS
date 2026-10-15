@@ -42,3 +42,69 @@ Ele ajuda a biblioteca a controlar quais livros estão disponíveis, quais estã
 
 - Na classe `Livro`, foi adicionado o atributo `disponivel`, do tipo `boolean`, para saber se o livro está disponível ou emprestado.
 - Na classe `Leitor`, foi adicionado o atributo `livrosEmMaos`, do tipo `int`, para contar quantos livros o leitor está com ele.
+
+
+###
+1. Em que linhas Emprestimo guarda referências a outros objetos?
+Na classe Emprestimo, existem dois atributos que guardam referências:
+private Livro livro;
+private Leitor leitor;
+
+No construtor, essas referências recebem os objetos:
+this.livro = livro;
+this.leitor = leitor;
+
+Assim, o empréstimo sabe qual livro e qual leitor estão envolvidos.
+2. Por que verificamos as condições antes de mudar o livro e o leitor?
+O programa verifica primeiro se o empréstimo pode acontecer, se o livro está disponível e se o leitor pode pegar outro livro.
+Só depois ele altera os objetos:
+livro.emprestar();
+leitor.pegouLivro();
+
+Isso evita alterações quando o empréstimo não pode ser realizado.
+3. O que impede uma segunda devolução de reduzir o contador novamente?
+O programa verifica se o empréstimo está ativo:
+if (!ativo) {
+    return false;
+}
+
+Depois da primeira devolução, o empréstimo fica inativo:
+leitor.devolveuLivro();
+ativo = false;
+
+Assim, uma segunda devolução é bloqueada e o contador não diminui novamente.
+Conclusão
+A classe Emprestimo controla a relação entre livro e leitor, evitando empréstimos inválidos e devoluções duplicadas. Isso mantém as informações do sistema corretas.
+###
+
+
+## 6. Como executar
+
+No Codespace, dentro da pasta `bibliotech`:
+
+```bash
+javac *.java
+java TesteRequisitos
+java TelaBiblioteca
+```
+
+`TesteRequisitos` verifica os requisitos no terminal.
+`TelaBiblioteca` abre a janela do BiblioTech.
+
+## 7. Requisitos e verificações
+
+| Requisito | Onde está no código | Como verifico |
+|---|---|---|
+| RF01 | `Biblioteca.cadastrarLivro()` | TesteRequisitos |
+| RF02 | `Biblioteca.cadastrarLeitor()` | TesteRequisitos |
+| RF03 | `Biblioteca.buscarLivro()` e `Livro.estaDisponivel()` | TesteRequisitos e acervo |
+| RF04 | `Biblioteca.devolver()` e `Emprestimo.registrarDevolucao()` | TesteRequisitos e botão Devolver |
+| RF05 | `Biblioteca.emprestar()` e `Emprestimo.realizarEmprestimo()` | TesteRequisitos e botão Emprestar |
+| RF06 | [Descrever o que você implementou ou indicar que ainda não foi implementado] | [Descrever a verificação ou indicar que ainda não existe] |
+
+## 8. O que o BiblioTech ainda não faz
+
+- Os empréstimos ainda não têm prazo para identificar atrasos.
+- A janela não tem login de bibliotecário.
+- O cadastro de livros e leitores pela janela ainda é limitado.
+- Os dados dos empréstimos não são mantidos depois que o programa é fechado.
