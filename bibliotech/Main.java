@@ -1,3 +1,7 @@
+
+import javax.swing.*;
+import java.awt.*;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -57,5 +61,34 @@ public class Main {
         System.out.println(
             "Depois do emprestimo: " + leitor
         );
+
+        // Abre a interface gráfica do BiblioTech
+        SwingUtilities.invokeLater(() -> {
+
+            JFrame janela = new JFrame("BiblioTech");
+
+            janela.setSize(400, 200);
+            janela.setLocationRelativeTo(null);
+            janela.setDefaultCloseOperation(
+                JFrame.EXIT_ON_CLOSE
+            );
+
+            JPanel painel = new JPanel(
+                new FlowLayout()
+            );
+
+            JButton botaoConsultar =
+                new JButton("Consultar livros");
+
+            botaoConsultar.addActionListener(e -> {
+                new TelaLivros().setVisible(true);
+            });
+
+            painel.add(botaoConsultar);
+
+            janela.add(painel);
+
+            janela.setVisible(true);
+        });
     }
 }
