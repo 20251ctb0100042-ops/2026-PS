@@ -1,4 +1,5 @@
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -102,7 +103,7 @@ public class LivroDAO {
         }
     }
 
-    // Método para listar todos os livros como objetos Livro
+    // Lista todos os livros
     public List<Livro> listarLivros() {
 
         List<Livro> livros = new ArrayList<>();
@@ -119,22 +120,11 @@ public class LivroDAO {
 
             while (resultado.next()) {
 
-                int id = resultado.getInt("id");
-
-                String titulo =
-                    resultado.getString("titulo");
-
-                String autor =
-                    resultado.getString("autor");
-
-                int ano =
-                    resultado.getInt("ano");
-
                 Livro livro = new Livro(
-                    id,
-                    titulo,
-                    autor,
-                    ano
+                    resultado.getInt("id"),
+                    resultado.getString("titulo"),
+                    resultado.getString("autor"),
+                    resultado.getInt("ano")
                 );
 
                 livros.add(livro);
@@ -151,7 +141,7 @@ public class LivroDAO {
         return livros;
     }
 
-    // Método para buscar um livro pelo ID
+    // Busca um livro pelo ID
     public Livro buscarLivroPorId(int id) {
 
         String sql =
@@ -169,23 +159,11 @@ public class LivroDAO {
 
                 if (resultado.next()) {
 
-                    int codigo =
-                        resultado.getInt("id");
-
-                    String titulo =
-                        resultado.getString("titulo");
-
-                    String autor =
-                        resultado.getString("autor");
-
-                    int ano =
-                        resultado.getInt("ano");
-
                     return new Livro(
-                        codigo,
-                        titulo,
-                        autor,
-                        ano
+                        resultado.getInt("id"),
+                        resultado.getString("titulo"),
+                        resultado.getString("autor"),
+                        resultado.getInt("ano")
                     );
                 }
             }
@@ -199,5 +177,52 @@ public class LivroDAO {
         }
 
         return null;
+    }
+
+    // Busca livros pelo título ou parte dele
+    public List<Livro> buscarLivrosPorTitulo(
+            String titulo) {
+
+        List<Livro> livros = new ArrayList<>();
+
+        String sql =
+            "SELECT id, titulo, autor, ano " +
+            "FROM livros " +
+            "WHERE titulo LIKE ? " +
+            "ORDER BY titulo";
+
+        try (Connection conexao = Conexao.conectar();
+             PreparedStatement comando =
+                 conexao.prepareStatement(sql)) {
+
+            comando.setString(
+                1, "%" + titulo + "%"
+            );
+
+            try (ResultSet resultado =
+                     comando.executeQuery()) {
+
+                while (resultado.next()) {
+
+                    Livro livro = new Livro(
+                        resultado.getInt("id"),
+                        resultado.getString("titulo"),
+                        resultado.getString("autor"),
+                        resultado.getInt("ano")
+                    );
+
+                    livros.add(livro);
+                }
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println(
+                "Erro ao buscar livros: " +
+                e.getMessage()
+            );
+        }
+
+        return livros;
     }
 }
